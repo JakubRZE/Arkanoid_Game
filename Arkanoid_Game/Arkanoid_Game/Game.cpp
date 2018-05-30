@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "MenuState.h"
+#include "GameState.h"
 
 
 Game::Game(int width, int height, std::string title)
@@ -7,7 +8,7 @@ Game::Game(int width, int height, std::string title)
 	_data->window.create(sf::VideoMode (width, height), title); //, sf::Style::Fullscreen
 
 	//Adding the initial game state
-	_data->machine.AddState(StateRef(new MenuState(this->_data)));
+	_data->machine.AddState(StateRef(new MenuState(this->_data)), false);
 
 	this->Run();
 }
@@ -33,14 +34,17 @@ void Game::Run()
 		currentTime = newTime;
 		accumulator += frameTime;
 
-		while ( accumulator >= dt)
+		while (accumulator >= dt)
 		{
 			this->_data->machine.GetActiveState()->HandleInput();
 			this->_data->machine.GetActiveState()->Update(dt);
 
-			interpolation = accumulator / dt;
-			this->_data->machine.GetActiveState()->Draw(interpolation);
+			accumulator -= dt;
 		}
+
+		interpolation = accumulator / dt;
+		this->_data->machine.GetActiveState()->Draw(interpolation);
+		
 
 	}
 

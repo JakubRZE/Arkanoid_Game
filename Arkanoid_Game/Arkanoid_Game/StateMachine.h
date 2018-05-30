@@ -13,7 +13,7 @@ public:
 	StateMachine() {}
 	~StateMachine() {}
 
-	void AddState(StateRef newState, bool isReplacing = true);
+	void AddState(StateRef newState, bool isReplacing);
 	void RemoveState();
 
 	void ProcessStateChanges();

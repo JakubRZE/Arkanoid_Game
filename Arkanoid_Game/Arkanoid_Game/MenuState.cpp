@@ -1,4 +1,5 @@
 #include "MenuState.h"
+#include "GameState.h"
 #include <sstream>
 #include <iostream>
 
@@ -8,8 +9,6 @@ MenuState::MenuState(GameDataRef data): _data(data)
 {
 
 }
-
-	
 
 void MenuState::Init()
 {
@@ -44,7 +43,7 @@ void MenuState::Init()
 	exitButton.setOutlineThickness(4);
 	exitButton.setOutlineColor(sf::Color::White);
 
-	// !!!!!!!!! zamienic buttony z rectangle shapów na sprity. W photo shop dorobic buttony za transparentym t³em !!!!!!!!
+	// !!!!!!!!! zamienic buttony z rectangle shapów na sprity. W photoshop dorobic buttony za transparentym t³em !!!!!!!!
 
 }
 
@@ -52,16 +51,18 @@ void MenuState::HandleInput()
 {
 	sf::Event event;
 
-	while (_data->window.pollEvent(event))
+	while (_data->window.pollEvent(event)) {
 		if (sf::Event::Closed == event.type)
 		{
 			_data->window.close();
 		}
+	} 
 		
 		if (_data->input.IsSpriteClicked( playButton , sf::Mouse::Left, _data->window))
 		{
+			_data->machine.AddState(StateRef(new GameState(_data)), false);
 			std::cout << "Go to game!";
-			//_data->machine.AddState(StateRef(new GameState(_data)), true);
+			
 		}
 
 		if (_data->input.IsSpriteClicked( exitButton, sf::Mouse::Left, _data->window))
