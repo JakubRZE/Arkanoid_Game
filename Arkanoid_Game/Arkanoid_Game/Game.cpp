@@ -1,12 +1,13 @@
 #include "Game.h"
+#include "MenuState.h"
 
 
 Game::Game(int width, int height, std::string title)
 {
-	_data->window.create(sf::VideoMode (width, height), title, sf::Style::Close | sf::Style::Titlebar);
+	_data->window.create(sf::VideoMode (width, height), title); //, sf::Style::Fullscreen
 
-	// !!!!!!!!!!!
-	//space for adding the initial game state
+	//Adding the initial game state
+	_data->machine.AddState(StateRef(new MenuState(this->_data)));
 
 	this->Run();
 }

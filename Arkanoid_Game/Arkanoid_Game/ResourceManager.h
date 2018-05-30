@@ -11,11 +11,11 @@ public:
 	ResourceManager() {}
 	~ResourceManager() {}
 
-	void LoadTexture(std::string name, std::string& fileName);
+	void LoadTexture(std::string name, std::string fileName);
 	sf::Texture& GetTexture(std::string name);
 	const sf::Texture& GetTexture(std::string name) const;
 
-	void LoadFont(std::string name, std::string& fileName);
+	void LoadFont(std::string name, std::string fileName);
 	sf::Font& GetFont(std::string name);
 	const sf::Font& GetFont(std::string name) const;
 

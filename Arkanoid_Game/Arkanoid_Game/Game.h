@@ -5,6 +5,7 @@
 #include <SFML\Graphics.hpp>
 #include "StateMachine.h"
 #include "ResourceManager.h"
+#include "InputManager.h"
 
 
 struct GameData
@@ -12,6 +13,7 @@ struct GameData
 	StateMachine machine;
 	sf::RenderWindow window;
 	ResourceManager resource;
+	InputManager input;
 };
 
 typedef std::shared_ptr<GameData> GameDataRef;

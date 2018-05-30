@@ -2,7 +2,7 @@
 
 //Textures
 
-void ResourceManager::LoadTexture(std::string name, std::string& filename)
+void ResourceManager::LoadTexture(std::string name, std::string filename)
 {
 	std::unique_ptr<sf::Texture> texture(new sf::Texture());
 	if (!texture->loadFromFile(filename))
@@ -27,7 +27,7 @@ const sf::Texture &ResourceManager::GetTexture(std::string name) const
 
 // Fonts
 
-void ResourceManager::LoadFont(std::string name, std::string& filename)
+void ResourceManager::LoadFont(std::string name, std::string filename)
 {
 	std::unique_ptr<sf::Font> font(new sf::Font());
 	if (!font->loadFromFile(filename))

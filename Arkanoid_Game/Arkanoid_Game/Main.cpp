@@ -5,7 +5,7 @@ int main()
 {
 	try
 	{
-		Game(800, 600, "Hello");  // won't run without any initial state
+		Game(1344, 768, "Arkanoid");
 	}
 	catch (std::exception& e)
 	{
