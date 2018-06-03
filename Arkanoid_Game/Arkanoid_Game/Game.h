@@ -2,7 +2,7 @@
 
 #include <memory>
 #include <string>
-#include <SFML\Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include "StateMachine.h"
 #include "ResourceManager.h"
 #include "InputManager.h"

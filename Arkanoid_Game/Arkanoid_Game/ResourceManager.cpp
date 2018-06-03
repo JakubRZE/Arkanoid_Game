@@ -49,3 +49,28 @@ const sf::Font &ResourceManager::GetFont(std::string name) const
 	auto found = FontMap.find(name);
 	return *found->second;
 }
+
+// Audio
+
+//void ResourceManager::LoadAudio(std::string name, std::string filename)
+//{
+//	std::unique_ptr<sf::SoundBuffer> audio(new sf::SoundBuffer());
+//	if (!audio->loadFromFile(filename))
+//	{
+//		throw std::runtime_error("ResourceManager::LoadAudio - Failed to load " + filename);
+//	}
+//
+//	AudioMap.insert(std::make_pair(name, std::move(audio)));
+//}
+//
+//sf::SoundBuffer &ResourceManager::GetAudio(std::string name)
+//{
+//	auto found = AudioMap.find(name);
+//	return *found->second;
+//}
+//
+//const sf::SoundBuffer &ResourceManager::GetAudio(std::string name) const
+//{
+//	auto found = AudioMap.find(name);
+//	return *found->second;
+//}

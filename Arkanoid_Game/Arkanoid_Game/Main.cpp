@@ -1,11 +1,13 @@
 #include <iostream>
 #include "Game.h"
+#include "Definitions.h"
+
 
 int main()
 {
 	try
 	{
-		Game(1344, 768, "Arkanoid");
+		Game(SCREEN_WIDTH, SCREEN_HEIGHT, "Arkanoid");
 	}
 	catch (std::exception& e)
 	{
