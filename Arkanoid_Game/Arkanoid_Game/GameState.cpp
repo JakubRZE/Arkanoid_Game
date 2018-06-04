@@ -25,7 +25,7 @@ void GameState::Init()
 
 	ball = std::unique_ptr<Ball>(new Ball(solidObjects, circleObjects, _data));
 	
-	ball->setPosition(300.f, 400.f);
+	ball->setPosition((float)SCREEN_WIDTH/2.f, 750.f);
 
 }
 

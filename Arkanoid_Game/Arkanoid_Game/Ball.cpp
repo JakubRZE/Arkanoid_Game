@@ -1,10 +1,10 @@
 #include "Ball.h"
 
 
-Ball::Ball(const std::vector<sf::RectangleShape>& solidObjects, const std::vector<sf::CircleShape>& circleObjects, GameDataRef data)
+Ball::Ball(const std::vector<sf::RectangleShape>& solidObjects,  std::vector<sf::CircleShape>& circleObjects, GameDataRef data)
 	: m_solidObjects(solidObjects),
 	m_circleObjects(circleObjects),
-	m_velocity(1.2f, 0.75f), //insert random values here :)
+	m_velocity(1.2f, -0.75f), //insert random values here :)
 	_data(data)
 {
 	m_shape.setRadius(10.f);
@@ -34,19 +34,29 @@ void Ball::update(float dt)
 	}
 
 	//check circle shapes
-	for (auto& o : m_circleObjects)
+
+	int m_size = m_circleObjects.size();
+	bool isDeleting=false;
+	int del_pos;
+
+	for (unsigned i = 0 ; i < m_size ; i++)
 	{
-		auto collisionNormal = o.getPosition() - getPosition();
-		if (lengthSquared(collisionNormal) < ((o.getRadius() * o.getRadius()) + (m_shape.getRadius() * m_shape.getRadius())))
+		auto collisionNormal = m_circleObjects[i].getPosition() - getPosition();
+		if (lengthSquared(collisionNormal) < ((m_circleObjects[i].getRadius() * m_circleObjects[i].getRadius()) + (m_shape.getRadius() * m_shape.getRadius())))
 		{
 			//we have a collision
-			auto manifold = getManifold(o.getRadius() + m_shape.getRadius(), collisionNormal);
+			auto manifold = getManifold(m_circleObjects[i].getRadius() + m_shape.getRadius(), collisionNormal);
 			resolve(manifold);
-
-			
-
+			//delate an object
+			isDeleting = true;
+			del_pos = i;
 			break;
 		}
+	}
+
+	if (!m_circleObjects.empty() && isDeleting)
+	{
+		m_circleObjects.erase(m_circleObjects.begin() + del_pos);
 	}
 }
 
@@ -97,6 +107,7 @@ void Ball::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	target.draw(m_shape, states);
 }
 
+
 	//------vector maths------//
 float  Ball::dot(const sf::Vector2f& lv, const sf::Vector2f& rv)
 {
@@ -121,7 +132,3 @@ float  Ball::lengthSquared(const sf::Vector2f& source)
 }
 
 
-void Ball::Destroy()
-{
-	//vec.erase(iterator erase);
-}
