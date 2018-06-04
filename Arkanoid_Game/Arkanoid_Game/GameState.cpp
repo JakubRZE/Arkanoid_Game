@@ -2,6 +2,8 @@
 #include "Definitions.h"
 
 #include <iostream>
+#include <stdlib.h>
+#include <time.h> 
 
 
 GameState::GameState(GameDataRef data) : _data(data)
@@ -104,7 +106,23 @@ void  GameState::createSolidObjects(std::vector<sf::RectangleShape>& shapes)
 
 void  GameState::createCircleObjects(std::vector<sf::CircleShape>& shapes)
 {
-	shapes.emplace_back(30.f);
+	srand(time(NULL));
+
+	//(rand() % 5)
+
+	for (unsigned i = 0; i < 3; i++)
+	{
+		for (unsigned j = 0; j < 8; j++)
+		{
+			shapes.emplace_back(rand() % 22 + 32);
+			//shapes.back().setPosition(rand() % SCREEN_WIDTH - 150 + 120, rand() % SCREEN_HEIGHT- 340 + 120);
+			shapes.back().setPosition(100 + (float)(rand() % 15) + (j * 160), 75 + (float)(rand() % 15) + (i * 115));
+			shapes.back().setOrigin(shapes.back().getRadius(), shapes.back().getRadius());
+			shapes.back().setFillColor( sf::Color::White); // rand() % 255 + 220 , rand() % 17 , rand() % 17
+		}
+	}
+
+	/*shapes.emplace_back(30.f);
 	shapes.back().setPosition(420.f, 80.f);
 	shapes.back().setOrigin(shapes.back().getRadius(), shapes.back().getRadius());
 
@@ -122,5 +140,5 @@ void  GameState::createCircleObjects(std::vector<sf::CircleShape>& shapes)
 
 	shapes.emplace_back(50.f);
 	shapes.back().setPosition(320.f, 410.f);
-	shapes.back().setOrigin(shapes.back().getRadius(), shapes.back().getRadius());
+	shapes.back().setOrigin(shapes.back().getRadius(), shapes.back().getRadius());*/
 }

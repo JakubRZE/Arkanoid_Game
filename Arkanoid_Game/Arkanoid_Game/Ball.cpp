@@ -34,7 +34,7 @@ void Ball::update(float dt)
 	}
 
 	//check circle shapes
-	for (const auto& o : m_circleObjects)
+	for (auto& o : m_circleObjects)
 	{
 		auto collisionNormal = o.getPosition() - getPosition();
 		if (lengthSquared(collisionNormal) < ((o.getRadius() * o.getRadius()) + (m_shape.getRadius() * m_shape.getRadius())))
@@ -42,6 +42,9 @@ void Ball::update(float dt)
 			//we have a collision
 			auto manifold = getManifold(o.getRadius() + m_shape.getRadius(), collisionNormal);
 			resolve(manifold);
+
+			
+
 			break;
 		}
 	}
@@ -115,4 +118,10 @@ sf::Vector2f  Ball::reflect(const sf::Vector2f& velocity, const sf::Vector2f& no
 float  Ball::lengthSquared(const sf::Vector2f& source)
 {
 	return dot(source, source);
+}
+
+
+void Ball::Destroy()
+{
+	//vec.erase(iterator erase);
 }

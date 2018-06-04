@@ -43,6 +43,9 @@ private:
 	void resolve(const sf::Vector3f& manifold);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
+	void Destroy();
+	
+	
 };
 
 
