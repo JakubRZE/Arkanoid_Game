@@ -4,7 +4,7 @@
 Ball::Ball(const std::vector<sf::RectangleShape>& solidObjects,  std::vector<sf::CircleShape>& circleObjects, GameDataRef data)
 	: m_solidObjects(solidObjects),
 	m_circleObjects(circleObjects),
-	m_velocity(1.2f, -0.75f), //insert random values here :)
+	m_velocity(1.2f, -0.75f), // ball movement adjustment
 	_data(data)
 {
 	m_shape.setRadius(10.f);
@@ -39,7 +39,7 @@ void Ball::update(float dt)
 	bool isDeleting=false;
 	int del_pos;
 
-	for (unsigned i = 0 ; i < m_size ; i++)
+	for (int i = 0 ; i < m_size ; i++)
 	{
 		auto collisionNormal = m_circleObjects[i].getPosition() - getPosition();
 		if (lengthSquared(collisionNormal) < ((m_circleObjects[i].getRadius() * m_circleObjects[i].getRadius()) + (m_shape.getRadius() * m_shape.getRadius())))

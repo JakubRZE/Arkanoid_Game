@@ -3,7 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include "Game.h"
-#include "CircleObjects.h"
 
 #include <vector>
 
@@ -41,6 +40,7 @@ private:
 	sf::Vector3f getManifold(const sf::FloatRect& overlap, const sf::Vector2f& collisionNormal);
 	sf::Vector3f getManifold(float summedDistance, const sf::Vector2f& collisionNormal);
 	void resolve(const sf::Vector3f& manifold);
+
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	
 	

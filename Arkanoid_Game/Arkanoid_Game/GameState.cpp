@@ -46,9 +46,6 @@ void GameState::HandleInput()
 			position.x = static_cast<float>(x);
 			paddle->setPosition(position);
 		}
-
-	
-
 }
 
 void GameState::Update(float dt)
@@ -76,12 +73,14 @@ void GameState::Draw(float dt)
 }
 
 //-------builds scene-----//
+
 void  GameState::createSolidObjects(std::vector<sf::RectangleShape>& shapes)
 {
 	//we set the shape origins to the centre of the object
 	//so that comparing the position with the ball's position
 	//gives us a good idea of the direction the ball is moving
 
+	// window bounds
 	shapes.emplace_back(sf::Vector2f(SCREEN_WIDTH, 1.5f)); //top
 	shapes.back().setOrigin(shapes.back().getSize() / 2.f);
 	shapes.back().setPosition(SCREEN_WIDTH / 2.f, 0.f);
@@ -106,39 +105,18 @@ void  GameState::createSolidObjects(std::vector<sf::RectangleShape>& shapes)
 
 void  GameState::createCircleObjects(std::vector<sf::CircleShape>& shapes)
 {
+	//seed for random time
 	srand(time(NULL));
 
-	//(rand() % 5)
-
+	//-------builds block for destroying-----//
 	for (unsigned i = 0; i < 3; i++)
 	{
 		for (unsigned j = 0; j < 8; j++)
 		{
 			shapes.emplace_back(rand() % 22 + 32);
-			//shapes.back().setPosition(rand() % SCREEN_WIDTH - 150 + 120, rand() % SCREEN_HEIGHT- 340 + 120);
 			shapes.back().setPosition(100 + (float)(rand() % 15) + (j * 160), 75 + (float)(rand() % 15) + (i * 115));
 			shapes.back().setOrigin(shapes.back().getRadius(), shapes.back().getRadius());
 			shapes.back().setFillColor( sf::Color::White); // rand() % 255 + 220 , rand() % 17 , rand() % 17
 		}
 	}
-
-	/*shapes.emplace_back(30.f);
-	shapes.back().setPosition(420.f, 80.f);
-	shapes.back().setOrigin(shapes.back().getRadius(), shapes.back().getRadius());
-
-	shapes.emplace_back(60.f);
-	shapes.back().setPosition(220.f, 180.f);
-	shapes.back().setOrigin(shapes.back().getRadius(), shapes.back().getRadius());
-
-	shapes.emplace_back(20.f);
-	shapes.back().setPosition(400.f, 580.f);
-	shapes.back().setOrigin(shapes.back().getRadius(), shapes.back().getRadius());
-
-	shapes.emplace_back(45.f);
-	shapes.back().setPosition(120.f, 340.f);
-	shapes.back().setOrigin(shapes.back().getRadius(), shapes.back().getRadius());
-
-	shapes.emplace_back(50.f);
-	shapes.back().setPosition(320.f, 410.f);
-	shapes.back().setOrigin(shapes.back().getRadius(), shapes.back().getRadius());*/
 }
