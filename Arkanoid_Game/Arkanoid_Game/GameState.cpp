@@ -16,6 +16,11 @@ void GameState::Init()
 	//_data->resource.LoadTexture("Menu Background", ...);
 	//_background.setTexture(this->_data->resource.GetTexture("Menu Background"));
 
+	// audio loading
+	_data->resource.LoadAudio("HitPaddle", "Recources/audio/Ping.wav");
+	_data->resource.LoadAudio("HitCircle", "Recources/audio/Pong.wav");
+
+
 	std::cout << "We are in the game!";
 
 	createSolidObjects(solidObjects);

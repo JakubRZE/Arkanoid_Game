@@ -1,6 +1,8 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+
 #include "State.h"
 #include "Game.h" 
 #include "Ball.h"

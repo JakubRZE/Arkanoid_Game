@@ -29,6 +29,7 @@ void Ball::update(float dt)
 			auto collisionNormal = o.getPosition() - getPosition();
 			auto manifold = getManifold(overlap, collisionNormal);
 			resolve(manifold);
+			_data->resource.Play("HitPaddle");
 			break; //skip the rest of the objects
 		}
 	}
@@ -56,6 +57,7 @@ void Ball::update(float dt)
 
 	if (!m_circleObjects.empty() && isDeleting)
 	{
+		_data->resource.Play("HitCircle");
 		m_circleObjects.erase(m_circleObjects.begin() + del_pos);
 	}
 }

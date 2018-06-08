@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
+#include <SFML/Audio.hpp>
 #include "Game.h"
 
 #include <vector>
@@ -35,15 +36,13 @@ private:
 
 	sf::CircleShape m_shape;
 	sf::Vector2f m_velocity;
-	const float m_speed = 500.f;
+	const float m_speed = 600.f;
 
 	sf::Vector3f getManifold(const sf::FloatRect& overlap, const sf::Vector2f& collisionNormal);
 	sf::Vector3f getManifold(float summedDistance, const sf::Vector2f& collisionNormal);
 	void resolve(const sf::Vector3f& manifold);
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-	
-	
 };
 
 
