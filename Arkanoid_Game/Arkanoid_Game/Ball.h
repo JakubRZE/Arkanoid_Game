@@ -14,8 +14,9 @@ public:
 	explicit Ball(const std::vector<sf::RectangleShape>& solidObjects, std::vector<sf::CircleShape>& circleObjects, GameDataRef data);
 	~Ball() = default;
 
-	void update(float dt);
+	void update(float dt, bool game_start, int &_score);
 
+	float getPosition_Y();
 
 	//------vector maths------//
 
@@ -36,7 +37,8 @@ private:
 
 	sf::CircleShape m_shape;
 	sf::Vector2f m_velocity;
-	const float m_speed = 600.f;
+	const float m_ballRadius{ 10.0f };
+	const float m_speed = 660.f;
 
 	sf::Vector3f getManifold(const sf::FloatRect& overlap, const sf::Vector2f& collisionNormal);
 	sf::Vector3f getManifold(float summedDistance, const sf::Vector2f& collisionNormal);

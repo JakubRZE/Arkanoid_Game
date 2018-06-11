@@ -6,6 +6,8 @@
 #include "State.h"
 #include "Game.h" 
 #include "Ball.h"
+#include "HeadsUpDisplay.h"
+#include "GameOverState.h"
 
 
 class GameState: public State
@@ -40,5 +42,12 @@ private:
 	sf::RectangleShape* paddle;
 
 	std::unique_ptr<Ball> ball;
+
+	std::unique_ptr<HeadsUpDisplay> headsUpDisplay;
+
+	int _score;
+	int _life;
+
+	bool game_start = false;
 };
 

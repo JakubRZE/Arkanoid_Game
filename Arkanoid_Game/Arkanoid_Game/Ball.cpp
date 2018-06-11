@@ -7,17 +7,19 @@ Ball::Ball(const std::vector<sf::RectangleShape>& solidObjects,  std::vector<sf:
 	m_velocity(1.2f, -0.75f), // ball movement adjustment
 	_data(data)
 {
-	m_shape.setRadius(10.f);
+	m_shape.setRadius(this->m_ballRadius);
+	m_shape.setFillColor(sf::Color::Red);
 	setOrigin(10.f, 10.f);
-
 	m_velocity = normalise(m_velocity);
 }
 
 
-void Ball::update(float dt)
+void Ball::update(float dt, bool game_start, int &_score)
 {
 	//move the ball
-	move(m_velocity * m_speed * dt);
+	if (game_start) {
+		move(m_velocity * m_speed * dt);
+	}
 
 	//check each object for collision
 	sf::FloatRect overlap; //holds overlap data, if any
@@ -31,11 +33,12 @@ void Ball::update(float dt)
 			resolve(manifold);
 			_data->resource.Play("HitPaddle");
 			break; //skip the rest of the objects
+
 		}
 	}
 
-	//check circle shapes
 
+	//check circle shapes collision
 	int m_size = m_circleObjects.size();
 	bool isDeleting=false;
 	int del_pos;
@@ -58,8 +61,15 @@ void Ball::update(float dt)
 	if (!m_circleObjects.empty() && isDeleting)
 	{
 		_data->resource.Play("HitCircle");
+		_score+=10;
 		m_circleObjects.erase(m_circleObjects.begin() + del_pos);
+
 	}
+}
+
+float Ball::getPosition_Y()
+{
+	return getPosition().y;
 }
 
 sf::Vector3f Ball::getManifold(const sf::FloatRect& overlap, const sf::Vector2f& collisionNormal)

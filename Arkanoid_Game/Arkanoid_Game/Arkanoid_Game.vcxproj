@@ -132,7 +132,9 @@
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="HeadsUpDisplay.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuState.cpp" />
@@ -142,7 +144,9 @@
   <ItemGroup>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Definitions.h" />
+    <ClInclude Include="GameOverState.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="HeadsUpDisplay.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="ResourceManager.h" />
