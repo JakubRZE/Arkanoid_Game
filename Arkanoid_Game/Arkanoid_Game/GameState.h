@@ -28,7 +28,7 @@ public:
 private:
 	GameDataRef _data;
 
-	//sf::Sprite _background;
+	sf::Sprite _background;
 
 	//delta time clock
 	sf::Clock GameStateframeClock;
@@ -49,5 +49,6 @@ private:
 	int _life;
 
 	bool game_start = false;
+
 };
 

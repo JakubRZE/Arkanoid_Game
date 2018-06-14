@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "State.h"
 #include "Game.h" 
 
@@ -18,12 +19,17 @@ public:
 private:
 	GameDataRef _data;
 
-	//sf::Sprite _background;
+	sf::Sprite _background;
 	sf::Text tittle;
+	sf::Text playText;
+	sf::Text exitText;
+	sf::Text author;
 	sf::RectangleShape playButton;
 	sf::RectangleShape exitButton;
+	sf::Sprite muteButton;
+	sf::Music bgMusic;
 
-	
+	bool mute = false;
 	
 };
 

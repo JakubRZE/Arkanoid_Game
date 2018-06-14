@@ -13,15 +13,21 @@ GameState::GameState(GameDataRef data) : _data(data)
 
 void GameState::Init()
 {
-	//_data->resource.LoadTexture("Menu Background", ...);
-	//_background.setTexture(this->_data->resource.GetTexture("Menu Background"));
-	
-	// font load
+	_data->resource.LoadTexture("MenuBg", "Recources/img/game_bg.jpg");
+	_background.setTexture(this->_data->resource.GetTexture("MenuBg"));
+
+
 
 	// audio loading
+
+	_data->resource.LoadMusic("Recources/audio/game_music.wav");
+	_data->resource.PlayMusic();
+
 	_data->resource.LoadAudio("HitPaddle", "Recources/audio/Ping.wav");
 	_data->resource.LoadAudio("HitCircle", "Recources/audio/Pong.wav");
 	_data->resource.LoadAudio("LosingSound", "Recources/audio/LosingSound.wav");
+	_data->resource.LoadAudio("GameOver", "Recources/audio/gameover.wav");
+
 
 
 	std::cout << "We are in the game!";
@@ -30,7 +36,7 @@ void GameState::Init()
 
 	headsUpDisplay = std::unique_ptr<HeadsUpDisplay>(new HeadsUpDisplay(_data));
 	_score = 0;
-	_life = 3;
+	_life = 1;
 	headsUpDisplay->UpdateScore(_score);
 	headsUpDisplay->UpdateLife(_life);
 
@@ -41,7 +47,7 @@ void GameState::Init()
 
 	ball = std::unique_ptr<Ball>(new Ball(solidObjects, circleObjects, _data));
 	
-	ball->setPosition((float)SCREEN_WIDTH/2.f, 685.f);
+	ball->setPosition((float)SCREEN_WIDTH/2.f, 715.f);
 }
 
 void GameState::HandleInput()
@@ -79,8 +85,8 @@ void GameState::Update(float dt)
 	{
 		game_start = false;
 		_data->resource.Play("LosingSound");
-		paddle->setPosition(SCREEN_WIDTH / 2.f, 700.f);
-		ball->setPosition((float)SCREEN_WIDTH / 2.f, 680.f);
+		paddle->setPosition(SCREEN_WIDTH / 2.f, 735.f);
+		ball->setPosition((float)SCREEN_WIDTH / 2.f, 715.f);
 
 		_life--;
 	}
@@ -90,13 +96,25 @@ void GameState::Update(float dt)
 
 	if (_life == 0)
 	{
-		_data->machine.AddState(StateRef(new GameOverState(_data, _score)), true);
+		sf::Clock clock;
+		_data->resource.PauseMusic();
+		_data->resource.Play("GameOver");
+
+		sf::Time elapsed1 = clock.getElapsedTime();
+
+		while (elapsed1.asSeconds() < 1.5f) {
+			elapsed1 = clock.getElapsedTime();
+		};
+
+		_data->machine.AddState(StateRef(new GameOverState(_data, _score,circleObjects ,solidObjects , _background)), true);
 	}
 }
 
 void GameState::Draw(float dt)
 {
 	_data->window.clear();
+
+	_data->window.draw(_background);
 
 	headsUpDisplay->Draw();
 
@@ -105,6 +123,7 @@ void GameState::Draw(float dt)
 	{
 		_data->window.draw(o);
 	}
+
 	for (const auto& o : circleObjects)
 	{
 		_data->window.draw(o);
@@ -123,22 +142,22 @@ void  GameState::createSolidObjects(std::vector<sf::RectangleShape>& shapes)
 	//gives us a good idea of the direction the ball is moving
 
 	// window bounds
-	shapes.emplace_back(sf::Vector2f(SCREEN_WIDTH, 4.f)); //top
+	shapes.emplace_back(sf::Vector2f(SCREEN_WIDTH, 6.f)); //top
 	shapes.back().setOrigin(shapes.back().getSize() / 2.f);
 	shapes.back().setPosition(SCREEN_WIDTH / 2.f, 0.f);
 
-	shapes.emplace_back(sf::Vector2f(4.f , SCREEN_HEIGHT)); //left
+	shapes.emplace_back(sf::Vector2f(6.f , SCREEN_HEIGHT)); //left
 	shapes.back().setOrigin(shapes.back().getSize() / 2.f);
 	shapes.back().setPosition(0.f, SCREEN_HEIGHT / 2.f);
 
-	shapes.emplace_back(sf::Vector2f(4.f, SCREEN_HEIGHT)); //right
+	shapes.emplace_back(sf::Vector2f(6.f, SCREEN_HEIGHT)); //right
 	shapes.back().setOrigin(shapes.back().getSize() / 2.f);
 	shapes.back().setPosition(SCREEN_WIDTH, SCREEN_HEIGHT / 2.f);
 
 	//make the paddle last so we can easily grab a reference to it
 	shapes.emplace_back(sf::Vector2f(150.f, 20.f));
 	shapes.back().setOrigin(shapes.back().getSize() / 2.f);
-	shapes.back().setPosition(SCREEN_WIDTH/2.f, 700.f);
+	shapes.back().setPosition(SCREEN_WIDTH/2.f, 735.f);
 }
 
 void  GameState::createCircleObjects(std::vector<sf::CircleShape>& shapes)

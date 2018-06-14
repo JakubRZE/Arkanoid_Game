@@ -11,7 +11,7 @@
 class GameOverState : public State
 {
 public:
-	GameOverState(GameDataRef data, int _score);
+	GameOverState(GameDataRef data, int &_score, std::vector<sf::CircleShape> &circle, std::vector<sf::RectangleShape> &rectangle, sf::Sprite background);
 
 	void Init();
 
@@ -24,9 +24,24 @@ public:
 private:
 	GameDataRef _data;
 
-	//sf::Sprite _background;
+	sf::Sprite _background;
+	sf::RectangleShape _shape;
+	sf::Text tittle;
+	sf::Text points;
+	sf::Text name;
+
+	sf::Text nameText;
+	sf::String name_str;
+
+	int score;
+	std::string  _highScore;
 
 	//delta time clock
-	sf::Clock GameStateframeClock;
+	//sf::Clock GameStateframeClock;
+
+	//vector of static objects
+	std::vector<sf::RectangleShape> solidObjects;
+	//vector of static circular objects
+	std::vector<sf::CircleShape> circleObjects;
 
 };

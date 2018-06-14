@@ -3,7 +3,7 @@
 #include<map>
 #include<memory>
 #include<SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
+#include<SFML/Audio.hpp>
 
 
 class ResourceManager
@@ -24,10 +24,21 @@ public:
 	void LoadAudio(std::string name, std::string fileName);
 	void Play(const std::string name);
 
+	void LoadMusic(std::string fileName);
+	void PlayMusic();
+	void PauseMusic();
+	void StopMusic();
+
+	bool mute = false;
+
 private:
 	std::map<std::string, std::unique_ptr<sf::Texture>> TextureMap;
 	std::map<std::string, std::unique_ptr<sf::Font>> FontMap;
 
 	std::map<std::string, std::unique_ptr<sf::Sound>> AudioMap;
 	std::map<std::string, std::unique_ptr<sf::SoundBuffer>> soundBufferMap;
+
+	sf::Music bg_Music;
+
+	
 };

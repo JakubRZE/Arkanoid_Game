@@ -79,3 +79,34 @@ void ResourceManager::Play(const std::string name)
 
 	found->second->play();
 }
+
+// Music 
+
+void ResourceManager::LoadMusic(std::string fileName)
+{
+	if (!bg_Music.openFromFile(fileName))
+	{
+		throw std::runtime_error("Background Music - Failed to load ");
+	}
+}
+
+void ResourceManager::PlayMusic()
+{
+	if (!mute)
+	{
+		bg_Music.play();
+		bg_Music.setVolume(20);
+		bg_Music.setLoop(true);
+	}
+}
+
+void ResourceManager::PauseMusic()
+{
+	bg_Music.pause();
+}
+
+void ResourceManager::StopMusic()
+{
+	bg_Music.stop();
+}
+

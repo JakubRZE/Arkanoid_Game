@@ -5,8 +5,10 @@
 
 Game::Game(int width, int height, std::string title)
 {
-	_data->window.create(sf::VideoMode (width, height), title); //, sf::Style::Fullscreen
+	_data->resource.LoadMusic("Recources/audio/intro_music.wav");
 
+	_data->window.create(sf::VideoMode (width, height), title); //, sf::Style::Fullscreen
+	
 	//Adding the initial game state
 	_data->machine.AddState(StateRef(new MenuState(this->_data)), false);
 
