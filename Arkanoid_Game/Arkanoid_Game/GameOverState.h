@@ -2,9 +2,11 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <set>
 
 #include "State.h"
 #include "Game.h" 
+#include "MenuState.h"
 #include "Ball.h"
 
 
@@ -19,10 +21,20 @@ public:
 	void Update(float dt);
 	void Draw(float dt);
 
+	//bool isEnoughPoints(std::multimap< int, std::string> map);
+
 
 
 private:
 	GameDataRef _data;
+
+	sf::RectangleShape SubmitButton;
+	sf::RectangleShape MenuButton;
+	sf::Text SubmitText;
+	sf::Text MenuText;
+
+	sf::Text top_scores;
+	sf::Text top_names;
 
 	sf::Sprite _background;
 	sf::RectangleShape _shape;
@@ -31,9 +43,9 @@ private:
 	sf::Text name;
 
 	sf::Text nameText;
-	sf::String name_str;
+	std::unique_ptr<sf::String> name_str;
 
-	int score;
+	std::unique_ptr<int> score;
 	std::string  _highScore;
 
 	//delta time clock
@@ -44,4 +56,8 @@ private:
 	//vector of static circular objects
 	std::vector<sf::CircleShape> circleObjects;
 
+	std::multimap< int, std::string> score_map;
+
+	bool isSubmited = false;
+	bool isEnough = false;
 };

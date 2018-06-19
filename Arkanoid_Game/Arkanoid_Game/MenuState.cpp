@@ -27,6 +27,7 @@ void MenuState::Init()
 
 
 	// music here
+	_data->resource.LoadMusic("Recources/audio/intro_music.wav");
 	_data->resource.PlayMusic();
 	
 

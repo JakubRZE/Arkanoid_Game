@@ -55,6 +55,7 @@ void GameState::HandleInput()
 	sf::Event event;
 
 	while (_data->window.pollEvent(event))
+	{
 		if (sf::Event::Closed == event.type)
 		{
 			_data->window.close();
@@ -62,8 +63,8 @@ void GameState::HandleInput()
 		//update the paddle position
 		else if (event.type == sf::Event::MouseMoved && game_start)
 		{
-			
-			auto x = std::max( 0 + (int)paddle->getSize().x/2 , std::min(SCREEN_WIDTH - (int)paddle->getSize().x/2 , event.mouseMove.x));
+
+			auto x = std::max(0 + (int)paddle->getSize().x / 2, std::min(SCREEN_WIDTH - (int)paddle->getSize().x / 2, event.mouseMove.x));
 			auto position = paddle->getPosition();
 			position.x = static_cast<float>(x);
 			paddle->setPosition(position);
@@ -71,9 +72,20 @@ void GameState::HandleInput()
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-		// left key is pressed: move our character
+			// left key is pressed: move our character
 			game_start = true;
 		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		{
+			game_start = false;
+			_data->machine.AddState(StateRef(new PauseState(_data, circleObjects , _background, _score)), false);
+			std::cout << "Escape!";
+		}
+
+	}
+
+		
 }
 
 void GameState::Update(float dt)
@@ -93,6 +105,7 @@ void GameState::Update(float dt)
 
 	headsUpDisplay->UpdateScore(_score);
 	headsUpDisplay->UpdateLife(_life);
+
 
 	if (_life == 0)
 	{
@@ -137,10 +150,6 @@ void GameState::Draw(float dt)
 
 void  GameState::createSolidObjects(std::vector<sf::RectangleShape>& shapes)
 {
-	//we set the shape origins to the centre of the object
-	//so that comparing the position with the ball's position
-	//gives us a good idea of the direction the ball is moving
-
 	// window bounds
 	shapes.emplace_back(sf::Vector2f(SCREEN_WIDTH, 6.f)); //top
 	shapes.back().setOrigin(shapes.back().getSize() / 2.f);

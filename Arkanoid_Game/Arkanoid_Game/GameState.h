@@ -8,6 +8,7 @@
 #include "Ball.h"
 #include "HeadsUpDisplay.h"
 #include "GameOverState.h"
+#include "PauseState.h"
 
 
 class GameState: public State
