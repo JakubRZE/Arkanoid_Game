@@ -121,6 +121,8 @@ void GameState::Update(float dt)
 
 		_data->machine.AddState(StateRef(new GameOverState(_data, _score,circleObjects ,solidObjects , _background)), true);
 	}
+
+	nextLevel();
 }
 
 void GameState::Draw(float dt)
@@ -141,6 +143,8 @@ void GameState::Draw(float dt)
 	{
 		_data->window.draw(o);
 	}
+
+	if(nextLevel()) _data->window.draw(win_scr);
 
 	_data->window.display();
 
@@ -185,4 +189,22 @@ void  GameState::createCircleObjects(std::vector<sf::CircleShape>& shapes)
 			shapes.back().setFillColor( sf::Color::White); // rand() % 255 + 220 , rand() % 17 , rand() % 17
 		}
 	}
+}
+
+bool GameState::nextLevel()
+{
+	if (circleObjects.empty())
+	{
+		game_start = false;
+
+		_data->resource.PauseMusic();
+		_data->resource.Play("GameOver");
+
+		win_scr.setSize(sf::Vector2f(_data->window.getSize()));
+		win_scr.setFillColor(sf::Color(0, 0, 0, 190));
+
+		//_data->machine.AddState(StateRef(new GameOverState(_data, _score, circleObjects, solidObjects, _background)), true);
+		return true;
+	}
+	return false;
 }

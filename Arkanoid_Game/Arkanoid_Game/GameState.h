@@ -26,6 +26,8 @@ public:
 	void createSolidObjects(std::vector<sf::RectangleShape>& shapes);
 	void createCircleObjects(std::vector<sf::CircleShape>& shapes);
 
+	bool nextLevel();
+
 private:
 	GameDataRef _data;
 
@@ -51,5 +53,6 @@ private:
 
 	bool game_start = false;
 
+	sf::RectangleShape win_scr;
 };
 

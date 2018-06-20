@@ -25,32 +25,45 @@ void GameOverState::Init()
 
 	if (readFile.is_open())
 	{
-		for(int i=0;i<5;i++)
+		while (!readFile.eof())
 		{
 			std::string line;
 			readFile >> line;
-			std::size_t found = line.find_first_of("*");
+			if (line != "")
+			{
+				std::size_t found = line.find_first_of("*");
 
-			std::string f_score = line.substr(0, found);
-			line.erase(0, found + 1);
+				std::string f_score = line.substr(0, found);
+				line.erase(0, found + 1);
 
-			// string -> integer
-			int file_score = std::stoi(f_score);
+				// string -> integer
+				int file_score = std::stoi(f_score);
 
-			score_map.insert(std::make_pair(file_score, line));
+				score_map.insert(std::make_pair(file_score, line));
+			}
 		}
 	}
+
 	readFile.close();
 
 	
 	// is eligable to scoretable
-	for (const auto it : score_map)
+	if (score_map.empty())
 	{
-		if (*score > it.first)
+		isEnough = true;
+	}
+	else
+	{
+		for (const auto it : score_map)
 		{
-			isEnough = true;
+			if (*score > it.first || score_map.size() < 5)
+			{
+				isEnough = true;
+			}
+			break;
 		}
 	}
+	
 
 
 	std::string score_B;
@@ -74,12 +87,12 @@ void GameOverState::Init()
 	top_scores.setFont(this->_data->resource.GetFont("Intro"));
 	top_scores.setCharacterSize(30);
 	top_scores.setOrigin(top_scores.getGlobalBounds().width / 2.f, top_scores.getGlobalBounds().height / 2.f);
-	top_scores.setPosition(865, 475 );
+	top_scores.setPosition(835, 475 );
 
 	top_names.setFont(this->_data->resource.GetFont("Intro"));
 	top_names.setCharacterSize(30);
 	top_names.setOrigin(top_names.getGlobalBounds().width / 2.f, top_names.getGlobalBounds().height / 2.f);
-	top_names.setPosition(540 , 475);
+	top_names.setPosition(520 , 475);
 
 
 
@@ -201,18 +214,20 @@ void GameOverState::HandleInput()
 			//// na probe!!!!!!!
 			std::string score_B;
 			int i = 1;
-			for (auto it = score_map.rbegin(); i<=5 ; ++it)
+			for (auto it = score_map.rbegin(); it != score_map.rend() ; ++it)
 			{
 				score_B += std::to_string(it->first) + '\n';
 				i++;
+				if (i > 5) break;
 			}
 
 			i = 1;
 			std::string name_B;
-			for (auto it = score_map.rbegin(); i<=5 ; ++it)
+			for (auto it = score_map.rbegin(); it != score_map.rend(); ++it)
 			{
 				name_B += std::to_string(i) + "." + "  " + it->second + '\n';
 				i++;
+				if (i > 5) break;
 			}
 			top_scores.setString(score_B);
 			top_names.setString(name_B);
@@ -226,8 +241,9 @@ void GameOverState::HandleInput()
 			{
 				auto it = score_map.rbegin();
 
-				for (int j = 0 ; j < 5 ; j++)
+				for (int j = 0 ; it != score_map.rend(); j++)
 				{
+					if (j >= 5) break;
 					std::string zapis = std::to_string(it->first) + "*" + it->second + '\n';
 					writeFile << zapis;
 					++it;
