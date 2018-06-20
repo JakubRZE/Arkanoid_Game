@@ -29,30 +29,22 @@ public:
 	bool nextLevel();
 
 private:
+
+	sf::Clock GameStateframeClock;
 	GameDataRef _data;
 
 	sf::Sprite _background;
-
-	//delta time clock
-	sf::Clock GameStateframeClock;
-
-	//vector of static objects
+	sf::RectangleShape win_scr;
+	
 	std::vector<sf::RectangleShape> solidObjects;
-	//vector of static circular objects
 	std::vector<sf::CircleShape> circleObjects;
-
-	//get a ref to the paddle shape
 	sf::RectangleShape* paddle;
-
 	std::unique_ptr<Ball> ball;
 
 	std::unique_ptr<HeadsUpDisplay> headsUpDisplay;
 
-	int _score;
-	int _life;
-
-	bool game_start = false;
-
-	sf::RectangleShape win_scr;
+	int _score{ 0 };
+	int _life{ 3 };
+	bool game_start{ false };
 };
 

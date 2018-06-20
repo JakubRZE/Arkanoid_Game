@@ -13,12 +13,10 @@ GameState::GameState(GameDataRef data) : _data(data)
 
 void GameState::Init()
 {
+	_data->window.setMouseCursorVisible(false);
+
 	_data->resource.LoadTexture("MenuBg", "Recources/img/game_bg.jpg");
 	_background.setTexture(this->_data->resource.GetTexture("MenuBg"));
-
-
-
-	// audio loading
 
 	_data->resource.LoadMusic("Recources/audio/game_music.wav");
 	_data->resource.PlayMusic();
@@ -30,9 +28,8 @@ void GameState::Init()
 
 
 
-	std::cout << "We are in the game!";
 
-	_data->window.setMouseCursorVisible(false);
+	
 
 	headsUpDisplay = std::unique_ptr<HeadsUpDisplay>(new HeadsUpDisplay(_data));
 	_score = 0;
