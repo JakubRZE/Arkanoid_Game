@@ -45,7 +45,7 @@ void MenuState::Init()
 	author.setString("Made by J. Rzepka");
 	author.setCharacterSize(20);
 	author.setOrigin(author.getGlobalBounds().width / 2.f, author.getGlobalBounds().height / 2.f);
-	author.setPosition(_data->window.getSize().x - 100, _data->window.getSize().y -20);
+	author.setPosition(_data->window.getSize().x - 100.f, _data->window.getSize().y -20.f);
 
 	//playButton atributes
 	playButton.setSize({190, 60}); 

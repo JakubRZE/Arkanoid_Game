@@ -6,13 +6,18 @@
 #include <fstream> 
 
 
-GameOverState::GameOverState(GameDataRef data, int &_score, std::vector<sf::CircleShape> &circle, std::vector<sf::RectangleShape> &rectangle, sf::Sprite background) 
+GameOverState::GameOverState(GameDataRef data, int &_score, std::vector<sf::CircleShape> &circle, std::vector<sf::RectangleShape> &rectangle, sf::Sprite _background) 
 	: _data(data),
-	_background(background),
+	background(_background),
 	solidObjects(rectangle),
 	circleObjects(circle)
 {
 	score = std::unique_ptr<int>(new int(_score));
+}
+
+GameOverState::~GameOverState()
+{
+
 }
 
 void GameOverState::Init()
@@ -292,7 +297,7 @@ void GameOverState::Draw(float dt)
 {
 	_data->window.clear();
 
-	_data->window.draw(_background);
+	_data->window.draw(background);
 
 	for (const auto& o : solidObjects)
 	{

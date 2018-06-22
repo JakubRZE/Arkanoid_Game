@@ -1,1 +1,3 @@
-30*ja
+400*Game_Master
+340*Mistrz_Swiata
+250*Pionek

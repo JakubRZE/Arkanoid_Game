@@ -14,6 +14,7 @@ class GameOverState : public State
 {
 public:
 	GameOverState(GameDataRef data, int &_score, std::vector<sf::CircleShape> &circle, std::vector<sf::RectangleShape> &rectangle, sf::Sprite background);
+	~GameOverState();
 
 	void Init();
 
@@ -36,7 +37,7 @@ private:
 	sf::Text top_scores;
 	sf::Text top_names;
 
-	sf::Sprite _background;
+	sf::Sprite background;
 	sf::RectangleShape _shape;
 	sf::Text tittle;
 	sf::Text points;

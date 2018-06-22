@@ -143,4 +143,9 @@ float  Ball::lengthSquared(const sf::Vector2f& source)
 	return dot(source, source);
 }
 
+void Ball::speedUp()
+{
+	m_speed += 0.1f;
+}
+
 
