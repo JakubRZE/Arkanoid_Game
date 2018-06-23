@@ -1,4 +1,5 @@
 #include <iostream>
+#include <conio.h>
 #include "Game.h"
 #include "Definitions.h"
 
@@ -12,7 +13,7 @@ int main()
 	catch (std::exception& e)
 	{
 		std::cout << "\nEXCEPTION: " << e.what() << std::endl;
+		getch();
 	}
-
 	return EXIT_SUCCESS;
 }
