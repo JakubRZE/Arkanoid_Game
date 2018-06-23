@@ -58,6 +58,7 @@ void PauseState::HandleInput()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
 			_data->machine.RemoveState();
+			_data->window.setMouseCursorVisible(false);
 		}
 
 		if (_data->input.IsSpriteClicked(MenuButton, sf::Mouse::Left, _data->window))
