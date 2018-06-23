@@ -136,7 +136,6 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="HeadsUpDisplay.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="Level_1.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="PauseState.cpp" />
@@ -150,7 +149,6 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="HeadsUpDisplay.h" />
     <ClInclude Include="InputManager.h" />
-    <ClInclude Include="Level_1.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="ResourceManager.h" />

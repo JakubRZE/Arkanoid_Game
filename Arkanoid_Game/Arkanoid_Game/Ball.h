@@ -35,6 +35,7 @@ private:
 	sf::Vector2f m_velocity;
 	const float m_ballRadius{ 10.0f };
 	float m_speed = 680.f;
+	int scoreRate{ 10 };
 
 	sf::Vector3f getManifold(const sf::FloatRect& overlap, const sf::Vector2f& collisionNormal);
 	sf::Vector3f getManifold(float summedDistance, const sf::Vector2f& collisionNormal);

@@ -11,7 +11,6 @@ public:
 	MenuState(GameDataRef data);
 
 	void Init();
-
 	void HandleInput();
 	void Update(float dt);
 	void Draw(float dt);
@@ -29,7 +28,6 @@ private:
 	sf::Sprite muteButton;
 	sf::Music bgMusic;
 
-	bool mute = false;
-	
+	bool mute = false;	
 };
 

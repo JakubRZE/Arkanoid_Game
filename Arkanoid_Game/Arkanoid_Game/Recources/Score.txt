@@ -1,3 +1,4 @@
-400*Game_Master
 340*Mistrz_Swiata
+270*Mistrz_Okolic
 250*Pionek
+

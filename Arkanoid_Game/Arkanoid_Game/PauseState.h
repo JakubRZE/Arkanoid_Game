@@ -15,7 +15,6 @@ public:
 	PauseState(GameDataRef data, std::vector<sf::CircleShape> &circle, sf::Sprite background, int &_score);
 
 	void Init();
-
 	void HandleInput();
 	void Update(float dt);
 	void Draw(float dt);
@@ -24,18 +23,15 @@ private:
 	GameDataRef _data;
 
 	sf::RectangleShape _shape;
-
-	//vector of static objects
-	std::vector<sf::CircleShape> circleObjects;
-
 	sf::Sprite _background;
-	std::unique_ptr<int> score;
 
 	sf::RectangleShape MenuButton;
 	sf::Text MenuText;
-
 	sf::Text tittle1;
 	sf::Text tittle2;
-	
+
+	std::vector<sf::CircleShape> circleObjects;
+
+	std::unique_ptr<int> score;
 };
 

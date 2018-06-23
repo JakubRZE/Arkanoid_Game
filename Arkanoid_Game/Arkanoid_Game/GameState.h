@@ -3,13 +3,10 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-//#include "State.h"
-//#include "Game.h" 
 #include "Ball.h"
 #include "HeadsUpDisplay.h"
 #include "GameOverState.h"
 #include "PauseState.h"
-#include "Level_1.h"
 
 
 class GameState: public State

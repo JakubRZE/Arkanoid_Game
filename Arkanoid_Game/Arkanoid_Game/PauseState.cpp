@@ -1,7 +1,6 @@
 #include "PauseState.h"
 
 
-
 PauseState::PauseState(GameDataRef data, std::vector<sf::CircleShape> &circle, sf::Sprite background, int &_score)
 	: _data(data),
 	circleObjects(circle),
@@ -13,7 +12,6 @@ PauseState::PauseState(GameDataRef data, std::vector<sf::CircleShape> &circle, s
 void PauseState::Init()
 {
 	_data->window.setMouseCursorVisible(true);
-
 	_shape.setSize(sf::Vector2f(_data->window.getSize()));
 	_shape.setFillColor(sf::Color(0, 0, 0, 100));
 
@@ -30,8 +28,7 @@ void PauseState::Init()
 	tittle2.setOrigin(tittle2.getGlobalBounds().width / 2.f, tittle2.getGlobalBounds().height / 2.f);
 	tittle2.setPosition(_data->window.getSize().x / 2.f , tittle1.getPosition().y + 70);
 
-
-	//MenuButton atributes
+	//menuButton 
 	MenuButton.setSize({ 285, 40 });
 	MenuButton.setFillColor(sf::Color(28, 52, 63, 160));
 	MenuButton.setOrigin(MenuButton.getSize().x / 2.f, MenuButton.getSize().y / 2.f);
@@ -45,8 +42,6 @@ void PauseState::Init()
 	MenuText.setCharacterSize(35);
 	MenuText.setOrigin(MenuButton.getGlobalBounds().width / 2.f, MenuButton.getGlobalBounds().height / 2.f);
 	MenuText.setPosition(MenuButton.getPosition().x + 8, MenuButton.getPosition().y);
-
-
 }
 
 void PauseState::HandleInput()
@@ -92,17 +87,13 @@ void PauseState::Draw(float dt)
 	_data->window.clear();
 
 	_data->window.draw(_background);
-
 	for (const auto& o : circleObjects)
 	{
 		_data->window.draw(o);
 	}
-
 	_data->window.draw(_shape);
-
 	_data->window.draw(tittle1);
 	_data->window.draw(tittle2);
-
 	_data->window.draw(MenuButton);
 	_data->window.draw(MenuText);
 

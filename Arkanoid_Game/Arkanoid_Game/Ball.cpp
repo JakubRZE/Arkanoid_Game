@@ -37,7 +37,6 @@ void Ball::update(float dt, bool game_start, int &_score)
 		}
 	}
 
-
 	//check circle shapes collision
 	int m_size = m_circleObjects.size();
 	bool isDeleting=false;
@@ -61,9 +60,8 @@ void Ball::update(float dt, bool game_start, int &_score)
 	if (!m_circleObjects.empty() && isDeleting)
 	{
 		_data->resource.Play("HitCircle");
-		_score+=10;
+		_score+=scoreRate;
 		m_circleObjects.erase(m_circleObjects.begin() + del_pos);
-
 	}
 }
 
@@ -87,7 +85,6 @@ sf::Vector3f Ball::getManifold(const sf::FloatRect& overlap, const sf::Vector2f&
 		manifold.y = (collisionNormal.y < 0) ? 1.f : -1.f;
 		manifold.z = overlap.height;
 	}
-
 	return manifold;
 }
 
@@ -101,7 +98,6 @@ sf::Vector3f Ball::getManifold(float summedDistance, const sf::Vector2f& collisi
 	manifold.z = collisionDistance - summedDistance;
 	return manifold;
 }
-
 
 void Ball::resolve(const sf::Vector3f& manifold)
 {
@@ -118,7 +114,6 @@ void Ball::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	states.transform *= getTransform();
 	target.draw(m_shape, states);
 }
-
 
 	//------vector maths------//
 float  Ball::dot(const sf::Vector2f& lv, const sf::Vector2f& rv)

@@ -163,7 +163,7 @@ void GameState::oneCircleObject(std::vector<sf::CircleShape>& shapes, float radi
 	while (isCircleIntersecting(circleObjects))
 	{
 		shapes.pop_back();
-		oneCircleObject(circleObjects, rand() % 22 + 32, rand() % 1200 + 100, rand() % 470 + 45, true);
+		oneCircleObject(circleObjects, rand() % 22 + 32, rand() % 1200 + 100, rand() % 470 + 80, true);
 	}
 
 }

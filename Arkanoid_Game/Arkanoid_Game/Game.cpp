@@ -5,9 +5,9 @@
 
 Game::Game(int width, int height, std::string title)
 {
-	_data->window.create(sf::VideoMode (width, height), title); //, sf::Style::Fullscreen
+	_data->window.create(sf::VideoMode (width, height), title);
 	
-	//Adding the initial game state
+	//Initial game state
 	_data->machine.AddState(StateRef(new MenuState(this->_data)), false);
 
 	this->Run();
@@ -38,15 +38,11 @@ void Game::Run()
 		{
 			this->_data->machine.GetActiveState()->HandleInput();
 			this->_data->machine.GetActiveState()->Update(dt);
-
 			accumulator -= dt;
 		}
 
 		interpolation = accumulator / dt;
 		this->_data->machine.GetActiveState()->Draw(interpolation);
-		
-
 	}
-
 }
 

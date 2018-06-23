@@ -1,7 +1,6 @@
 #include "ResourceManager.h"
 
 //Textures
-
 void ResourceManager::LoadTexture(std::string name, std::string filename)
 {
 	std::unique_ptr<sf::Texture> texture(new sf::Texture());
@@ -26,7 +25,6 @@ const sf::Texture &ResourceManager::GetTexture(std::string name) const
 }
 
 // Fonts
-
 void ResourceManager::LoadFont(std::string name, std::string filename)
 {
 	std::unique_ptr<sf::Font> font(new sf::Font());
@@ -51,7 +49,6 @@ const sf::Font &ResourceManager::GetFont(std::string name) const
 }
 
 // Audio
-
 void ResourceManager::LoadAudio(std::string name, std::string filename)
 {
 	std::unique_ptr<sf::SoundBuffer> audio(new sf::SoundBuffer());
@@ -80,8 +77,7 @@ void ResourceManager::Play(const std::string name)
 	found->second->play();
 }
 
-// Music 
-
+// Music
 void ResourceManager::LoadMusic(std::string fileName)
 {
 	if (!bg_Music.openFromFile(fileName))

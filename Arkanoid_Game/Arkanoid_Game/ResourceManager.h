@@ -20,7 +20,6 @@ public:
 	sf::Font& GetFont(std::string name);
 	const sf::Font& GetFont(std::string name) const;
 
-
 	void LoadAudio(std::string name, std::string fileName);
 	void Play(const std::string name);
 

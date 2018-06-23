@@ -15,7 +15,6 @@ public:
 
 	void AddState(StateRef newState, bool isReplacing);
 	void RemoveState();
-
 	void ProcessStateChanges();
 
 	StateRef &GetActiveState();
