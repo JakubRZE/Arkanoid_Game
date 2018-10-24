@@ -1,5 +1,5 @@
 # Arkanoid_Game
-Simple arkanoid game made in C++/SFML <br />
+Simple arkanoid game made in C++/SFML, with RAII technique<br />
 
 Download:<br />
 https://www.dropbox.com/s/sa64ed8oll2dwj5/Arkanoid%20Game.rar?dl=0
