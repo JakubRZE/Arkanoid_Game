@@ -3,11 +3,12 @@ Simple 2D Arkanoid game made in C++/SFML multimedia library, with RAII technique
 <br /><br />
 
 Play hard or go home!
+<br />
 
-Download on dropbox:<br />
-https://www.dropbox.com/s/sa64ed8oll2dwj5/Arkanoid%20Game.rar?dl=0
+<h4>Download on dropbox:<br />
+https://www.dropbox.com/s/sa64ed8oll2dwj5/Arkanoid%20Game.rar?dl=0</h4>
 
-<br /><br />
+<br />
 
 Screenshot[1]:
 ![gg](https://user-images.githubusercontent.com/38703432/61177560-0a408e80-a5d9-11e9-8b50-15bdef444a29.png)
