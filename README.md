@@ -1,7 +1,7 @@
 # Arkanoid_Game
 Simple 2D Arkanoid game made in C++/SFML multimedia library, with RAII technique.<br />
-<br /><br />
-
+<br />
+Get as much point as you can by destroying the round blocks, watch your life and on the end put your name on score table!
 Play hard or go home!
 <br />
 
